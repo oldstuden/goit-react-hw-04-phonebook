@@ -5,16 +5,16 @@ import { ListContact } from './ListContact/ListContact';
 import { UserForm } from './UserForm/UserForm';
 import { Filter } from './FilterContact';
 
+const initialContacts = [
+  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+];
+
 export const App = () => {
-  const initialContacts = [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ];
-  const savedContacts = window.localStorage.getItem('contacts');
-  const [contacts, setContacts] = useState(() =>
-    savedContacts ? JSON.parse(savedContacts) : initialContacts
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem('contacts')) ?? initialContacts
   );
   const [filter, setFilter] = useState('');
   useEffect(() => {
@@ -47,7 +47,7 @@ export const App = () => {
     );
   };
   const onDeleteContact = id => {
-    setContacts(contacts.filter(contact => contact.id !== id));
+    setContacts(prev => prev.filter(contact => contact.id !== id));
   };
   return (
     <div>

@@ -45,12 +45,7 @@ export const UserForm = ({ handleSubmit }) => {
         <ContactForm>
           <LabelForm>
             Name
-            <FieldForm
-              type="text"
-              name="name"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
+            <FieldForm type="text" name="name" />
             <ErrMessage name="name" component="p" />
           </LabelForm>
           <LabelForm>
